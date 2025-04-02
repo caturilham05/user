@@ -6,7 +6,6 @@ import (
 	"context"
 	"database/sql"
 	"errors"
-	"fmt"
 	"time"
 )
 
@@ -30,7 +29,6 @@ func (u *UserRepositoryImpl) FindByName(ctx context.Context, tx *sql.Tx, usernam
 	if user.Id != 0 {
 		createdAtStr := string(createdAt)
 		parsedTime, err := time.Parse("2006-01-02 15:04:05", createdAtStr)
-		fmt.Println(user)
 		helper.PanicIfError(err)
 		user.CreatedAt = parsedTime
 	}

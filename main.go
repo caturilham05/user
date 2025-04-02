@@ -9,9 +9,22 @@ import (
 	"caturilham05/user/service"
 	"net/http"
 
+	_ "caturilham05/user/docs"
+
 	"github.com/go-playground/validator/v10"
 	_ "github.com/go-sql-driver/mysql"
 )
+
+// @title User API
+// @version 1.0
+// @description This is a sample API with JWT authentication
+// @host localhost:3000
+
+// @securityDefinitions.apikey BearerAuth
+// @in header
+// @name Authorization
+
+// @Security BearerAuth
 
 func main() {
 	db := app.NewDB()

@@ -18,9 +18,23 @@ func NewAuthMiddleware(handler http.Handler) *AuthMiddleware {
 func (middleware *AuthMiddleware) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
 	accessToken := request.Header.Get("Authorization")
 
-	if strings.HasPrefix(request.URL.Path, "/api/login") {
+	if request.Method == http.MethodPost && request.URL.Path == "/api/users" {
 		middleware.Handler.ServeHTTP(writer, request)
 		return
+	}
+
+	// List path yang tidak perlu autentikasi
+	allowedPaths := []string{
+		"/api/login",
+		"/swagger/",
+	}
+
+	// Cek apakah request termasuk dalam daftar allowedPaths
+	for _, path := range allowedPaths {
+		if strings.HasPrefix(request.URL.Path, path) {
+			middleware.Handler.ServeHTTP(writer, request)
+			return
+		}
 	}
 
 	if accessToken == "" {
@@ -28,6 +42,7 @@ func (middleware *AuthMiddleware) ServeHTTP(writer http.ResponseWriter, request 
 			Code:   http.StatusUnauthorized,
 			Status: "UNAUTHORIZED",
 		}
+		writer.WriteHeader(http.StatusUnauthorized) // Tambahkan ini
 		helper.WriteToResponseBody(writer, webResponse)
 		return
 	}
@@ -38,6 +53,7 @@ func (middleware *AuthMiddleware) ServeHTTP(writer http.ResponseWriter, request 
 			Code:   http.StatusUnauthorized,
 			Status: err.Error(),
 		}
+		writer.WriteHeader(http.StatusUnauthorized) // Tambahkan ini
 		helper.WriteToResponseBody(writer, webResponse)
 		return
 	}
