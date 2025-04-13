@@ -33,7 +33,7 @@ func (u *UserServiceImpl) Login(ctx context.Context, request web.UserLoginReques
 	}
 
 	if err := helper.PasswordVerify(user.Password, request.Password); err != nil {
-		panic(exception.NewBadRequestError(err.Error()))
+		panic(exception.NewBadRequestError("password tidak valid"))
 	}
 
 	token, err := helper.GenerateToken(user.Id, request.Username)
