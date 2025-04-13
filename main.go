@@ -3,13 +3,12 @@ package main
 import (
 	"caturilham05/user/app"
 	"caturilham05/user/controller"
+	_ "caturilham05/user/docs"
 	"caturilham05/user/helper"
 	"caturilham05/user/middleware"
 	"caturilham05/user/repository"
 	"caturilham05/user/service"
 	"net/http"
-
-	_ "caturilham05/user/docs"
 
 	"github.com/go-playground/validator/v10"
 	_ "github.com/go-sql-driver/mysql"
@@ -27,6 +26,7 @@ import (
 // @Security BearerAuth
 
 func main() {
+	// fmt.Println(helper.GenerateSecretKey())
 	db := app.NewDB()
 	validate := validator.New()
 

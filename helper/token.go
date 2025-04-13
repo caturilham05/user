@@ -1,12 +1,25 @@
 package helper
 
 import (
+	"os"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
+	"github.com/joho/godotenv"
 )
 
-var secret = []byte("My-Secret-Key")
+var secret []byte
+
+func init() {
+	// Load .env saat package helper diinisialisasi
+	err := godotenv.Load()
+	if err != nil {
+		panic("Error loading .env file")
+	}
+
+	// Ambil SECRET_KEY dari .env
+	secret = []byte(os.Getenv("ENCRYPTED_SECRET_KEY"))
+}
 
 type JWTClaims struct {
 	Id       int    `json:"id"`
@@ -15,7 +28,7 @@ type JWTClaims struct {
 }
 
 func GenerateToken(id int, username string) (string, error) {
-	expirationTime := time.Now().Add(1 * time.Hour)
+	expirationTime := time.Now().Add(15 * time.Minute)
 	claims := JWTClaims{
 		Id:       id,
 		Username: username,
