@@ -8,6 +8,7 @@ import (
 	"caturilham05/user/middleware"
 	"caturilham05/user/repository"
 	"caturilham05/user/service"
+	"fmt"
 	"net/http"
 
 	"github.com/go-playground/validator/v10"
@@ -41,6 +42,8 @@ func main() {
 		Handler: middleware.NewAuthMiddleware(router),
 		// Handler: router,
 	}
+
+	fmt.Println("Server started on 0.0.0.0:3000")
 
 	err := server.ListenAndServe()
 	helper.PanicIfError(err)
