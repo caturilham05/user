@@ -10,7 +10,7 @@
         "version": "1.0"
     },
     "host": "imasaminda.my.id",
-    "basePath": "/user",
+    "basePath": "/",
     "paths": {
         "/api/login": {
             "post": {
