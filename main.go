@@ -18,7 +18,7 @@ import (
 // @version 1.0
 // @description This is a sample API with JWT authentication
 // @host imasaminda.my.id
-// @BasePath /user
+// @BasePath /
 // @schemes https
 
 // @securityDefinitions.apikey BearerAuth
