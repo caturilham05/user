@@ -1,6 +1,4 @@
-servers:
-  - url: https://imasaminda.my.id/
-
+basePath: /user
 definitions:
   web.UserCreateRequest:
     properties:
@@ -97,7 +95,7 @@ definitions:
         example: BAD REQUEST | ERROR NOT FOUND | UNAUTHORIZED | CONFLICT
         type: string
     type: object
-host: localhost:3000
+host: imasaminda.my.id
 info:
   contact: {}
   description: This is a sample API with JWT authentication
@@ -291,6 +289,8 @@ paths:
       summary: Update User
       tags:
       - User
+schemes:
+- https
 security:
 - BearerAuth: []
 securityDefinitions:
