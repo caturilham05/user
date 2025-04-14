@@ -1,3 +1,6 @@
+servers:
+  - url: https://imasaminda.my.id/
+
 definitions:
   web.UserCreateRequest:
     properties:
