@@ -46,6 +46,9 @@ definitions:
       token:
         example: Generated token
         type: string
+      token_expired_at:
+        example: "2025-04-03T01:13:12Z"
+        type: string
       username:
         example: johndoe
         type: string

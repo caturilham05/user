@@ -29,5 +29,6 @@ func ToLoginResponse(user domain.User) web.UserLoginResponse {
 		Username:  user.Username,
 		CreatedAt: user.CreatedAt,
 		Token:     user.Token,
+		ExpiredAt: user.ExpiredAt,
 	}
 }

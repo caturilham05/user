@@ -9,6 +9,7 @@ type User struct {
 	Password        string
 	PasswordConfirm string
 	CreatedAt       time.Time
+	ExpiredAt       time.Time
 	Token           string
 	// CreatedAt sql.NullTime
 	// CreatedAt string

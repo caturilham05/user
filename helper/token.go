@@ -27,7 +27,7 @@ type JWTClaims struct {
 	jwt.RegisteredClaims
 }
 
-func GenerateToken(id int, username string) (string, error) {
+func GenerateToken(id int, username string) (string, time.Time, error) {
 	expirationTime := time.Now().Add(15 * time.Minute)
 	claims := JWTClaims{
 		Id:       id,
@@ -38,7 +38,15 @@ func GenerateToken(id int, username string) (string, error) {
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	return token.SignedString(secret)
+
+	// Tandatangani token dengan secret key dan kembalikan string token
+	tokenString, err := token.SignedString(secret)
+	if err != nil {
+		return "", time.Time{}, err
+	}
+
+	// Kembalikan token dan waktu kedaluwarsa
+	return tokenString, expirationTime, nil
 }
 
 func ValidateToken(tokenString string) (*JWTClaims, error) {

@@ -36,7 +36,7 @@ func (u *UserServiceImpl) Login(ctx context.Context, request web.UserLoginReques
 		panic(exception.NewBadRequestError("password tidak valid"))
 	}
 
-	token, err := helper.GenerateToken(user.Id, request.Username)
+	token, expiredAt, err := helper.GenerateToken(user.Id, request.Username)
 	if err != nil {
 		panic(exception.NewBadRequestError(err.Error()))
 	}
@@ -47,6 +47,7 @@ func (u *UserServiceImpl) Login(ctx context.Context, request web.UserLoginReques
 		Username:  request.Username,
 		CreatedAt: user.CreatedAt,
 		Token:     token,
+		ExpiredAt: expiredAt,
 	}
 
 	return helper.ToLoginResponse(userResponse)

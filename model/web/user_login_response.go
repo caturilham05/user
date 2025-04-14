@@ -8,5 +8,6 @@ type UserLoginResponse struct {
 	Name      string    `json:"name" example:"John Doe"`
 	Username  string    `json:"username" example:"johndoe"`
 	CreatedAt time.Time `json:"created_at" example:"2025-04-03T01:13:12Z"`
+	ExpiredAt time.Time `json:"token_expired_at" example:"2025-04-03T01:13:12Z"`
 	Token     string    `json:"token" example:"Generated token"`
 }
