@@ -8,7 +8,6 @@ import (
 	"caturilham05/user/middleware"
 	"caturilham05/user/repository"
 	"caturilham05/user/service"
-	"fmt"
 	"net/http"
 
 	"github.com/go-playground/validator/v10"
@@ -18,7 +17,9 @@ import (
 // @title User API
 // @version 1.0
 // @description This is a sample API with JWT authentication
-// @host localhost:3000
+// @host imasaminda.my.id
+// @BasePath /user
+// @schemes https
 
 // @securityDefinitions.apikey BearerAuth
 // @in header
@@ -42,8 +43,6 @@ func main() {
 		Handler: middleware.NewAuthMiddleware(router),
 		// Handler: router,
 	}
-
-	fmt.Println("Server started on 0.0.0.0:3000")
 
 	err := server.ListenAndServe()
 	helper.PanicIfError(err)
