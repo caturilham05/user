@@ -459,7 +459,7 @@ const docTemplate = `{
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
 	Host:             "imasaminda.my.id",
-	BasePath:         "/user",
+	BasePath:         "/",
 	Schemes:          []string{"https"},
 	Title:            "User API",
 	Description:      "This is a sample API with JWT authentication",

@@ -1,4 +1,4 @@
-basePath: /user
+basePath: /
 definitions:
   web.UserCreateRequest:
     properties:
