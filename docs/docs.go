@@ -375,6 +375,14 @@ const docTemplate = `{
                     "type": "string",
                     "example": "2025-04-03T01:13:12Z"
                 },
+                "token_refresh": {
+                    "type": "string",
+                    "example": "Generated token refresh"
+                },
+                "token_refresh_expired_at": {
+                    "type": "string",
+                    "example": "2025-04-03T01:13:12Z"
+                },
                 "username": {
                     "type": "string",
                     "example": "johndoe"

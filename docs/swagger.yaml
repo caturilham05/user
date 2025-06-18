@@ -49,6 +49,12 @@ definitions:
       token_expired_at:
         example: "2025-04-03T01:13:12Z"
         type: string
+      token_refresh:
+        example: Generated token refresh
+        type: string
+      token_refresh_expired_at:
+        example: "2025-04-03T01:13:12Z"
+        type: string
       username:
         example: johndoe
         type: string
