@@ -24,11 +24,13 @@ func ToUserReponses(user []domain.User) []web.UserResponse {
 
 func ToLoginResponse(user domain.User) web.UserLoginResponse {
 	return web.UserLoginResponse{
-		Id:        user.Id,
-		Name:      user.Name,
-		Username:  user.Username,
-		CreatedAt: user.CreatedAt,
-		Token:     user.Token,
-		ExpiredAt: user.ExpiredAt,
+		Id:                    user.Id,
+		Name:                  user.Name,
+		Username:              user.Username,
+		CreatedAt:             user.CreatedAt,
+		Token:                 user.Token,
+		ExpiredAt:             user.ExpiredAt,
+		TokenRefresh:          user.TokenRefresh,
+		TokenRefreshExpiredAt: user.TokenRefreshExpiredAt,
 	}
 }

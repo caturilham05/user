@@ -3,14 +3,14 @@ package domain
 import "time"
 
 type User struct {
-	Id              int
-	Name            string
-	Username        string
-	Password        string
-	PasswordConfirm string
-	CreatedAt       time.Time
-	ExpiredAt       time.Time
-	Token           string
-	// CreatedAt sql.NullTime
-	// CreatedAt string
+	Id                    int
+	Name                  string
+	Username              string
+	Password              string
+	PasswordConfirm       string
+	CreatedAt             time.Time
+	ExpiredAt             time.Time
+	Token                 string
+	TokenRefresh          string
+	TokenRefreshExpiredAt time.Time
 }

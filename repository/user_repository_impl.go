@@ -12,6 +12,14 @@ import (
 type UserRepositoryImpl struct {
 }
 
+// SaveToken implements UserRepository.
+func (u *UserRepositoryImpl) SaveToken(ctx context.Context, tx *sql.Tx, user domain.User) domain.User {
+	SQL := "UPDATE `user` SET `access_token` = ?, `refresh_token` = ? WHERE `id` = ?"
+	_, err := tx.ExecContext(ctx, SQL, user.Token, user.TokenRefresh, user.Id)
+	helper.PanicIfError(err)
+	return user
+}
+
 // FindByName implements UserRepository.
 func (u *UserRepositoryImpl) FindByName(ctx context.Context, tx *sql.Tx, username string) (domain.User, error) {
 	SQL := "SELECT `id`, `name`, `username`, `password`, `created_at` FROM `user` WHERE `username` = ? LIMIT 1"

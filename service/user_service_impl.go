@@ -36,20 +36,28 @@ func (u *UserServiceImpl) Login(ctx context.Context, request web.UserLoginReques
 		panic(exception.NewBadRequestError("password tidak valid"))
 	}
 
-	token, expiredAt, err := helper.GenerateToken(user.Id, request.Username)
+	token, expiredAt, errToken := helper.GenerateToken(user.Id, request.Username)
+	if errToken != nil {
+		panic(exception.NewBadRequestError(err.Error()))
+	}
+
+	tokenRefresh, tokenRefreshExpiredAt, err := helper.RefreshToken(token)
 	if err != nil {
 		panic(exception.NewBadRequestError(err.Error()))
 	}
 
 	userResponse := domain.User{
-		Id:        user.Id,
-		Name:      user.Name,
-		Username:  request.Username,
-		CreatedAt: user.CreatedAt,
-		Token:     token,
-		ExpiredAt: expiredAt,
+		Id:                    user.Id,
+		Name:                  user.Name,
+		Username:              request.Username,
+		CreatedAt:             user.CreatedAt,
+		Token:                 token,
+		ExpiredAt:             expiredAt,
+		TokenRefresh:          tokenRefresh,
+		TokenRefreshExpiredAt: tokenRefreshExpiredAt,
 	}
 
+	userResponse = u.UserRepository.SaveToken(ctx, tx, userResponse)
 	return helper.ToLoginResponse(userResponse)
 }
 

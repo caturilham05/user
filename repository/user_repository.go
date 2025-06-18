@@ -13,4 +13,5 @@ type UserRepository interface {
 	FindById(ctx context.Context, tx *sql.Tx, userId int) (domain.User, error)
 	FIndAll(ctx context.Context, tx *sql.Tx) []domain.User
 	FindByName(ctx context.Context, tx *sql.Tx, username string) (domain.User, error)
+	SaveToken(ctx context.Context, tx *sql.Tx, user domain.User) domain.User
 }
