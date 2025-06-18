@@ -39,7 +39,7 @@ func main() {
 	router := app.NewRouter(userController)
 
 	server := http.Server{
-		Addr:    "127.0.0.1:3000",
+		Addr:    "0.0.0.0:3000",
 		Handler: middleware.NewAuthMiddleware(router),
 		// Handler: router,
 	}
